@@ -5,7 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import LayOut from './routes/LayOut.tsx';
-import HomePage from './HomePage.tsx';
+import HomePage from './pages/HomePage.tsx';
+import ExercisePage from './pages/ExercisePage.tsx';
+import CompletedPage from './pages/CompletedPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,8 @@ const router = createBrowserRouter([
     element: <LayOut/>,
     children:[
       {path:'/',element:<HomePage/>},
+      {path:'/:exercise-type',element:<ExercisePage/>},
+      {path:'/completed/:exercise-type',element:<CompletedPage/>},
       
     ]
   },
