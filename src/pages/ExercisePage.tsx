@@ -72,7 +72,10 @@ const Container = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none; 
   
 .submit-warning-container{
   width: 82% ;
@@ -211,7 +214,7 @@ const Container = styled.div<StyledProps>`
     position: relative;
     left: -10px;
     width: 86%;
-    margin-right
+  
    
    }
  }
@@ -247,9 +250,13 @@ const Exercise = styled.div<StyledProps>`
   align-items: center;
   gap: 40px;
   padding: 0px 10px ;
-  user-select: none;
+  
   font-size: 28px;
   font-weight: 600;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none !important; 
   background-color:  ${({ theme }) => theme.backgroundSecondary};
   border-radius: 20px;
   transition: background-color 500ms ease-in;

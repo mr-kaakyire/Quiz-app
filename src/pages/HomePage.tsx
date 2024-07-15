@@ -69,11 +69,17 @@ const Container = styled.div`
     justify-content: start;
    }
    .exercise-container{
+    position: relative;
+    left: -15px;
     width: 86%;
-    margin: 0 auto;
+  
+   
    }
  }
 
+ @media only screen and (max-width: 400px) {
+  margin-top: 20px;
+ }
 
   
 `

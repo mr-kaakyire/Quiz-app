@@ -189,7 +189,7 @@ font-weight: 300;
    
  }
  @media only screen and (max-width: 400px) {
-    background-color: red;
+   
     margin-left: 20px;
     margin-right: 0;
     justify-content: space-between;
