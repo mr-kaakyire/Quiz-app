@@ -338,7 +338,7 @@ justify-content: start;
 `
 
 function ExercisePage() {
-  const [data, setData] = useState<Data | null>(null);
+  const [data, setData] = useState<Data | any>(null);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [score, setScore] = useState(0);
   const [isCorrectSelection, setIsCorrectSelection] = useState<boolean | undefined>(false);
@@ -356,10 +356,9 @@ function ExercisePage() {
 
   const updateIndex = (index: number) => {
     setSelectedIndex(index)
-
   }
   const handleSubmit = () => {
-    
+    setSubmitClicked(true)
 
     if (data?.questions && data?.questions[questionIndex]?.options && selectedIndex != null && questionIndex < data?.questions?.length && data != null) {
       if (data.questions[questionIndex]?.answer == data!.questions[questionIndex]!.options[selectedIndex]) {
@@ -372,6 +371,12 @@ function ExercisePage() {
       else setIsCorrectSelection(false);
     }
   }
+
+    useEffect(()=>{
+      if (data?.questions) {
+        setCorrectAnswer(data?.questions[questionIndex].answer || "")
+      }
+    },[questionIndex,correctAnswer])
 
   useEffect(() => {
     fetch('/data.json')
@@ -387,13 +392,11 @@ function ExercisePage() {
         if (location.pathname.includes("/js")) setData(data.quizzes[2])
         if (location.pathname.includes("/acc")) setData(data.quizzes[3])
         console.log(data)
-      
-      })
-      
 
-    if (data?.questions) {
-      setCorrectAnswer(data?.questions[questionIndex].answer || "")
-    }
+      })
+
+
+   
 
   }, []);
 
@@ -416,10 +419,11 @@ function ExercisePage() {
 
         <div className="exercise-container">
           {data && data.questions ? (
-            data?.questions[questionIndex].options?.map((option, index) => (
-              <Exercise submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() =>{
-                 setSubmitClicked(false)
-                 submitClicked == false && updateIndex(index)}} key={index} svgBgColor="#f5f6fa">
+            data?.questions[questionIndex].options?.map((option: any, index: any) => (
+              <Exercise submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() => {
+
+                submitClicked == false && updateIndex(index)
+              }} key={index} svgBgColor="#f5f6fa">
                 {index == 0 && <div className="svg-container">
                   A
 
@@ -436,12 +440,15 @@ function ExercisePage() {
                 <div className="text-and-svg">
                   <h6 className="exercise-text">{option}</h6>
                   <div style={{ height: "50px", width: "50px", display: "flex", placeItems: "center", flexShrink: 0 }}>
-                    {isCorrectSelection && submitClicked && selectedIndex == index ?
-                      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z" /></svg>
-                      : !isCorrectSelection && submitClicked && selectedIndex == index ?
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z" /></svg>
-                        : !isCorrectSelection && submitClicked && selectedIndex != null &&  correctAnswer==option ? <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z" /></svg>
-                          : ""}
+                    {submitClicked && (correctAnswer == option) && selectedIndex == index && <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z" /></svg>
+                    }
+                    { (correctAnswer == option)&&selectedIndex!=index &&submitClicked && <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z" /></svg>
+                    }
+
+                        {submitClicked && (correctAnswer != option) && selectedIndex == index && <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z" /></svg>
+                    }
+                    
+                
                   </div>
 
                 </div>
@@ -471,16 +478,17 @@ function ExercisePage() {
               }} className="next-button">
                 Next Question
               </div> : <div onClick={() => {
-                setSubmitClicked(true)
-                selectedIndex && handleSubmit()}} className="submit-button">
+               
+                selectedIndex && handleSubmit()
+              }} className="submit-button">
                 Submit Answer
               </div>
             }
             <div className="warning">
-             {
-             submitClicked&& selectedIndex==null? <div style={{display:"flex", alignItems:"center"}}><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z" /></svg>
-              <p>Please select an answer</p></div>:""
-             }
+              {
+                submitClicked && selectedIndex == null ? <div style={{ display: "flex", alignItems: "center" }}><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z" /></svg>
+                  <p>Please select an answer</p></div> : ""
+              }
             </div>
 
           </div>
