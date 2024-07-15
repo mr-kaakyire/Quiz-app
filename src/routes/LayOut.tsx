@@ -25,11 +25,9 @@ position: relative;
 margin-top: 100px;
     .banner{
         position: relative;
-        @media only screen and (max-width: 400px) {
-        left: -20px;
-        }
+       
         @media only screen and (max-width: 600px) {
-        left: -10px;
+        left: -20px;
         }
     }
 
@@ -39,6 +37,10 @@ margin-top: 100px;
     @media only screen and (max-width: 600px) {
         margin-top: 20px;
     }
+    @media only screen and (max-width: 400px) {
+        margin-top: 5px;
+    }
+    
 `
 const SvgContainer = styled.div<StyledProps>`
     height: 50px;
@@ -48,6 +50,11 @@ const SvgContainer = styled.div<StyledProps>`
     display: flex;
     align-items: center;
     justify-content: center;
+
+     @media only screen and (max-width: 600px) {
+        height: 40px;
+        width: 40px;
+    }
 `
 
 const OutletContainer = styled.div`
@@ -62,10 +69,12 @@ const OutletContainer = styled.div`
   @media only screen and (max-width: 900px) {
         padding-top: 30px;
         padding-left: 25px;
+        margin-left: 30px;
     }
   @media only screen and (max-width: 400px) {
         padding-top: 0px;
         padding-left: 25px;
+        margin-left: 10px;
     }
 
   
@@ -175,7 +184,7 @@ font-weight: 300;
    
  }
  @media only screen and (max-width: 400px) {
-   
+    background-color: red;
     margin-left: 20px;
     margin-right: 0;
     justify-content: space-between;
