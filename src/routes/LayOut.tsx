@@ -71,6 +71,11 @@ const OutletContainer = styled.div`
         padding-left: 25px;
         margin-left: 30px;
     }
+  @media only screen and (max-width: 900px) {
+        padding-top: 30px;
+        padding-left: 25px;
+        margin-left: 10px;
+    }
   @media only screen and (max-width: 400px) {
         padding-top: 0px;
         padding-left: 25px;

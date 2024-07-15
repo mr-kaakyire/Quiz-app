@@ -66,9 +66,9 @@ const Container = styled.div<StyledProps>`
     width: 90%;
   }
  }
+
  .exercise-container{
   flex: 0.5;
- 
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -79,8 +79,6 @@ const Container = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
- 
   
   .warning{
    
@@ -202,6 +200,7 @@ const Container = styled.div<StyledProps>`
    align-items: center;
    gap: 20px;
    width: 100%;
+   position: relative;
 
    .heading-container{
     width: 90%;
@@ -209,8 +208,11 @@ const Container = styled.div<StyledProps>`
     justify-content: start;
    }
    .exercise-container{
+    position: relative;
+    left: -10px;
     width: 86%;
-    margin: 0 auto;
+    margin-right
+   
    }
  }
 
