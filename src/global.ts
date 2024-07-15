@@ -28,7 +28,8 @@ html,body {
   width: 100dvw;
   overflow: hidden;
   background: ${({ theme }) => theme.body};
-color: ${({ theme }) => theme.text};
+ color: ${({ theme }) => theme.text};
+ transition: background-color 500ms ease-in;
 
 }
 `;

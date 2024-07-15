@@ -95,7 +95,7 @@ const Container = styled.div<StyledProps>`
         margin-bottom: -25px;
        
         .indicator-text{
-            font-size: 1.4vw;
+            font-size: 30px;
             
             @media only screen and (max-width: 600px) {
                 font-size: 20px;
@@ -186,7 +186,7 @@ const Container = styled.div<StyledProps>`
   @media only screen and (max-width: 400px) {
     margin-left: 0;
  }
-  }
+}
 
 
  
@@ -216,6 +216,8 @@ const Container = styled.div<StyledProps>`
 } 
 
 @media only screen and (max-width: 600px) {
+  margin-top: 20px;
+  margin-left: -20px;
   flex-direction: column;
    align-items: center;
    gap: 20px;

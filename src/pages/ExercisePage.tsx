@@ -25,7 +25,7 @@ interface Question {
 }
 
 interface Data {
-  questions?: Question[];
+  questions?: Question[] | null;
 }
 
 const Container = styled.div<StyledProps>`
@@ -53,12 +53,11 @@ const Container = styled.div<StyledProps>`
     font-size: 20px;
     font-style: italic;
     color: ${({ theme }) => theme.text};
+    transition: color 500ms ease-in;
   }
-  @media only screen and (max-width: 490px) {
-    gap: 20px;
- }
+ 
   @media only screen and (max-width: 600px) {
-    gap: 10px;
+    gap: 0px;
     p{
       font-size: 15px;
     }
@@ -69,36 +68,46 @@ const Container = styled.div<StyledProps>`
  }
  .exercise-container{
   flex: 0.5;
+ 
   display: flex;
   flex-direction: column;
   gap: 20px;
   
   
 .submit-warning-container{
+  width: 82% ;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
+ 
   
   .warning{
+   
+    margin:0 auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: red;
     font-size: 15px;
     margin-top:10px;
     font-weight: bolder;
     height: 60px;
     width: 215px;
+    @media only screen and (max-width: 400px) {
+      margin-top: -5px;
+      
+    }
   }
     
   .submit-button{
-  width: 76%;
+  flex-shrink: 0;
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  padding: 0px 25px ;
+ 
   margin-top: 15px;
   user-select: none;
   font-size: 28px;
@@ -106,30 +115,36 @@ const Container = styled.div<StyledProps>`
   font-weight: 600;
   background-color: #A729F5;
   border-radius: 10px;
-  margin-left: -140px;
+ 
   cursor: pointer;
   box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
 -webkit-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
 -moz-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
 
+    &:hover{
+      background-color: #c16cf7;
+    }
+
 
   
 
   @media only screen and (max-width: 600px) {
-    height: 12vw;
-    margin-left: -8px;
-    font-size: medium;
     
-  }
+    height: 12vw;
+    font-size: medium;
+    }
+    @media only screen and (max-width: 400px) {
+        margin-top: 0px;
+    }
   }
   .next-button{
-  width: 75%;
+  flex-shrink: 0;
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  padding: 0px 25px ;
+ 
   margin-top: 15px;
   user-select: none;
   font-size: 28px;
@@ -137,7 +152,7 @@ const Container = styled.div<StyledProps>`
   font-weight: 600;
   background-color: #A729F5;
   border-radius: 10px;
-  margin-left: -140px;
+ 
   cursor: pointer;
   box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
 -webkit-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
@@ -146,24 +161,18 @@ const Container = styled.div<StyledProps>`
 
   
 
-  @media only screen and (max-width: 600px) {
-    height: 12vw;
-    width: 83%;
-    margin-left: -8px;
-    font-size: medium;
-    
+    @media only screen and (max-width: 600px) {
+      height: 12vw;
+      font-size: medium;
+    }
+  
   }
-  @media only screen and (max-width: 900px) {
-    height: 12vw;
-    width: 83%;
-    margin-left: 0px;
-    font-size: medium;
-    
-  }
-  }
-}
- 
+   @media only screen and (max-width: 600px) {
+      width: 91%;
+    }
  }
+ 
+}
  //Media breakpoints for PHONES
  
 
@@ -214,14 +223,14 @@ const Text = styled.span<StyledProps>`
   font-style: ${({ fontStyle }) => fontStyle || "normal"};
   line-height: 45px;
   color: ${({ theme }) => theme.text};
+  transition: color 500ms ease-in;
 
   @media only screen and (max-width: 600px) {
     font-size: ${({ fontSize }) => (fontSize ? `${fontSize / 1.6}px` : "1rem")};
     line-height:20px;
   }
   @media only screen and (max-width: 900px) {
-    font-size: ${({ fontSize }) => (fontSize ? `${fontSize / 1.6}px` : "1rem")};
-    line-height:20px;
+    line-height:40px;
   }
   
   
@@ -241,13 +250,17 @@ const Exercise = styled.div<StyledProps>`
   font-weight: 600;
   background-color:  ${({ theme }) => theme.backgroundSecondary};
   border-radius: 20px;
+  transition: background-color 500ms ease-in;
   cursor: pointer;
   box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
   -webkit-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
   -moz-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);  
   border: ${({ isSelected, isCorrectSelection, submitClicked }) => (isCorrectSelection && isSelected ? '3px solid #26D782' : isCorrectSelection == false && isSelected && submitClicked == true ? "3px solid #ee5454" : isSelected && submitClicked == false ? "3px solid #A729F5" : "3px solid transparent")};
 
-
+  &:hover > .svg-container{
+    background-color: ${({ isSelected }) => !isSelected && "#f2e6fe"};
+    color: ${({ isSelected }) => !isSelected && "#A729F5"};
+  }
 
   .svg-container{
     flex-shrink: 0;
@@ -272,6 +285,7 @@ const Exercise = styled.div<StyledProps>`
   }
   .exercise-text{
      color: ${({ theme }) => theme.text};
+     transition: color 500ms ease-in;
   }
   @media only screen and (max-width: 900px) {
     height: 10vw;
@@ -302,6 +316,7 @@ justify-content: start;
   width: 95%;
   padding: 0px 5px;
   border-radius: 10px;
+  transition: background-color 500ms ease-in;
   
   .progress{
    background-color: #A729F5;
@@ -321,6 +336,8 @@ function ExercisePage() {
   const [isCorrectSelection, setIsCorrectSelection] = useState<boolean | undefined>(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
+  const [correctAnswer, setCorrectAnswer] = useState<string>(" ");
+
 
 
   const location = useLocation();
@@ -334,11 +351,15 @@ function ExercisePage() {
 
   }
   const handleSubmit = () => {
-    setSubmitClicked(true)
+    
+
     if (data?.questions && data?.questions[questionIndex]?.options && selectedIndex != null && questionIndex < data?.questions?.length && data != null) {
-      if (data.questions[questionIndex]?.answer == data.questions[questionIndex]?.options[selectedIndex]) {
+      if (data.questions[questionIndex]?.answer == data!.questions[questionIndex]!.options[selectedIndex]) {
         setIsCorrectSelection(true)
         setScore((prev) => prev + 1)
+        if (data?.questions) {
+          setCorrectAnswer(data?.questions[questionIndex].answer || "")
+        }
       }
       else setIsCorrectSelection(false);
     }
@@ -364,6 +385,11 @@ function ExercisePage() {
         setError(error);
         setLoading(false);
       });
+
+    if (data?.questions) {
+      setCorrectAnswer(data?.questions[questionIndex].answer || "")
+    }
+
   }, []);
 
   return (
@@ -386,7 +412,9 @@ function ExercisePage() {
         <div className="exercise-container">
           {data && data.questions ? (
             data?.questions[questionIndex].options?.map((option, index) => (
-              <Exercise submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() => submitClicked == false && updateIndex(index)} key={index} svgBgColor="#f5f6fa">
+              <Exercise submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() =>{
+                 setSubmitClicked(false)
+                 submitClicked == false && updateIndex(index)}} key={index} svgBgColor="#f5f6fa">
                 {index == 0 && <div className="svg-container">
                   A
 
@@ -407,7 +435,8 @@ function ExercisePage() {
                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z" /></svg>
                       : !isCorrectSelection && submitClicked && selectedIndex == index ?
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z" /></svg>
-                        : ""}
+                        : !isCorrectSelection && submitClicked && selectedIndex != null &&  correctAnswer==option ? <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40"><path fill="#26D782" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z" /></svg>
+                          : ""}
                   </div>
 
                 </div>
@@ -436,18 +465,20 @@ function ExercisePage() {
                 setSubmitClicked(false)
               }} className="next-button">
                 Next Question
-              </div> : <div onClick={() => selectedIndex && handleSubmit()} className="submit-button">
+              </div> : <div onClick={() => {
+                setSubmitClicked(true)
+                selectedIndex && handleSubmit()}} className="submit-button">
                 Submit Answer
               </div>
             }
             <div className="warning">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z"/></svg>
-              <p>Please select an answer</p>
+             {
+             submitClicked&& selectedIndex==null? <div style={{display:"flex", alignItems:"center"}}><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 40 40"><path fill="#EE5454" d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z" /></svg>
+              <p>Please select an answer</p></div>:""
+             }
             </div>
 
           </div>
-
-
 
         </div>
       </Container>
