@@ -391,7 +391,9 @@ function ExercisePage() {
         if (location.pathname.includes("/css")) setData(data.quizzes[1])
         if (location.pathname.includes("/js")) setData(data.quizzes[2])
         if (location.pathname.includes("/acc")) setData(data.quizzes[3])
-        console.log(data)
+      
+          setCorrectAnswer(data?.questions[questionIndex].answer || "")
+        
 
       })
 
@@ -400,6 +402,11 @@ function ExercisePage() {
 
   }, []);
 
+  function handleSubmitClicked(){
+    if(selectedIndex ==null){
+      setSubmitClicked(false)
+    }
+  }
   return (
     <>
       <Container>
@@ -420,9 +427,9 @@ function ExercisePage() {
         <div className="exercise-container">
           {data && data.questions ? (
             data?.questions[questionIndex].options?.map((option: any, index: any) => (
-              <Exercise submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() => {
-                setSubmitClicked(false)
-                submitClicked == false && updateIndex(index)
+              <Exercise  submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() => {
+                handleSubmitClicked()
+                submitClicked == false && selectedIndex!=-1  && updateIndex(index)
               }} key={index} svgBgColor="#f5f6fa">
                 {index == 0 && <div className="svg-container">
                   A
