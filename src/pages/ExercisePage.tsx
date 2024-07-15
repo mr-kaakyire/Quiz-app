@@ -377,12 +377,9 @@ function ExercisePage() {
         if (location.pathname.includes("/js")) setData(data.quizzes[2])
         if (location.pathname.includes("/acc")) setData(data.quizzes[3])
         console.log(data)
-        setLoading(false);
+      
       })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+      
 
     if (data?.questions) {
       setCorrectAnswer(data?.questions[questionIndex].answer || "")
