@@ -82,7 +82,7 @@ const Text = styled.span<StyledProps>`
   font-weight: ${({ fontWeight }) => fontWeight || "300"};
   font-style: ${({ fontStyle }) => fontStyle || "normal"};
   line-height: ${({ lineHeight }) => lineHeight || "100%"};
-  color: ${({ textColor,theme }) => theme.text};
+  color: ${({theme }) => theme.text};
 
   @media only screen and (max-width: 600px) {
     font-size: ${({ fontSize }) => (fontSize ? `${fontSize / 1.6}px` : "1rem")};

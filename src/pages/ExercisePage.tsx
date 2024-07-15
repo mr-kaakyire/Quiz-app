@@ -329,8 +329,6 @@ justify-content: start;
 
 function ExercisePage() {
   const [data, setData] = useState<Data | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [score, setScore] = useState(0);
   const [isCorrectSelection, setIsCorrectSelection] = useState<boolean | undefined>(false);
