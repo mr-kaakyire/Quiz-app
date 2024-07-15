@@ -82,7 +82,7 @@ const Text = styled.span<StyledProps>`
   font-weight: ${({ fontWeight }) => fontWeight || "300"};
   font-style: ${({ fontStyle }) => fontStyle || "normal"};
   line-height: ${({ lineHeight }) => lineHeight || "100%"};
-  color: ${({ textColor }) => textColor || "#000"};
+  color: ${({ textColor,theme }) => theme.text};
 
   @media only screen and (max-width: 600px) {
     font-size: ${({ fontSize }) => (fontSize ? `${fontSize / 1.6}px` : "1rem")};
@@ -101,7 +101,7 @@ const Exercise = styled.div<StyledProps>`
   user-select: none;
   font-size: 28px;
   font-weight: 600;
-  background-color: white;
+  background-color: ${({theme})=>theme.backgroundSecondary};
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
@@ -117,7 +117,7 @@ const Exercise = styled.div<StyledProps>`
     border-radius:5px ;
   }
   .exercise-text{
-
+    color:  ${({theme})=>theme.text };
   }
   @media only screen and (max-width: 600px) {
   height: 60px;

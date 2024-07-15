@@ -12,11 +12,11 @@ import CompletedPage from './pages/CompletedPage.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LayOut/>,
+    element: <LayOut children={undefined}/>,
     children:[
       {path:'/',element:<HomePage/>},
       {path:'/:exercise-type',element:<ExercisePage/>},
-      {path:'/completed/:exercise-type',element:<CompletedPage/>},
+      {path:'/completed/:exercise-type/:score',element:<CompletedPage/>},
       
     ]
   },
