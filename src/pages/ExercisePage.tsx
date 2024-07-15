@@ -324,6 +324,7 @@ justify-content: start;
   
    border-radius: 10px;
    margin-bottom: 1px;
+   transition: all 300ms ease-in-out;
   }
 `
 
