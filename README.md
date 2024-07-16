@@ -53,24 +53,51 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
+- [React-router-dom](https://reactrouter.com/en/main) - React library
 - [Styled Components](https://styled-components.com/) - For styles
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+####React Router
+Implementing React-router allowed me to navigate between different pages without reloading the entire page, making the app feel like a single-page application.
+It also allows for dynamic segments which allows URL parameters to be passed to the link.
+```js
+ #####main.tsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import LayOut from './routes/LayOut.tsx';
+import HomePage from './pages/HomePage.tsx';
+import ExercisePage from './pages/ExercisePage.tsx';
+import CompletedPage from './pages/CompletedPage.tsx';
 
-To see how you can add code snippets, see below:
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LayOut children={undefined}/>,
+    children:[
+      {path:'/',element:<HomePage/>},
+      {path:'/:exercise-type',element:<ExercisePage/>},
+      {path:'/completed/:exercise-type/:score',element:<CompletedPage/>},
+      
+    ]
+  },
+]);
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <RouterProvider router={router}/>
+  </React.StrictMode>,
+)
 ```
 ```css
 .proud-of-this-css {
@@ -95,21 +122,15 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [react-router-dom](https://reactrouter.com/en/main) - I used this for client-side routing. I really love this because it was quick and intuitive to use.
+- [styled-components](https://styled-components.com/docs/basics) - This is also an amazing react library that allows you to manipulate your CSS with Javascript. It's usage is very intuitive and easy as well. And it made my life a whole lot easier when I was implementing the darkmode feature. I would probably recommend this over frontend libraries like tailwind
 
 **Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Mr-Kaakyire](https://mrkaakyire.vercel.app/)
+- Linkedin - [Emmanuel Boahen](https://www.linkedin.com/in/emmanuel-boahen-351850206/)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
-## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
