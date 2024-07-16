@@ -108,7 +108,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  {path:'/completed/:exercise-type/:score',element:<CompletedPage/>},
 ```
 ##### Outlet
-- It provide an Outlet component that allows you to dynamically change some parts of your page by change the link. This avoids writing repetative code for components in your site that does not change across different pages
+- It provides an Outlet component that allows you to dynamically change some parts of your page by changing the link. This avoids writing repetative code for components in your site that does not change across different pages
 
 ```js
 //Layout.tsx
