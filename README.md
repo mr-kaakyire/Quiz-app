@@ -64,10 +64,14 @@ Users should be able to:
 ### What I learned
 
 ####React Router
-Implementing React-router allowed me to navigate between different pages without reloading the entire page, making the app feel like a single-page application.
-It also allows for dynamic segments which allows URL parameters to be passed to the link.
+-Implementing React-router allowed me to navigate between different pages without reloading the entire page, making the app feel like a single-page application.
+-It also allows for dynamic segments which allows URL parameters to be passed to the link. 
+-It provide an Outlet component that allows you to dynamically change some parts of your page by change the link. 
+This avoids writing repetative code for components in your site that does not change across different pages
+
+#####Implementation
 ```js
- #####main.tsx
+ //main.tsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
@@ -99,14 +103,22 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 ```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+#####Dynamic Segments
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+//main.tsx
+ {path:'/:exercise-type',element:<ExercisePage/>},
+      {path:'/completed/:exercise-type/:score',element:<CompletedPage/>},
+```
+#####Outlet
+```js
+//Layout.tsx
+import { Outlet} from 'react-router-dom'
+<div className='banner'>
+               
+                <OutletContainer>
+                    <Outlet />
+                </OutletContainer>
+            </div>
 }
 ```
 
