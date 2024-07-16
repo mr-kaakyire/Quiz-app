@@ -132,7 +132,7 @@ import { Outlet} from 'react-router-dom'
 - [styled-components](https://styled-components.com/docs/basics) - This is also an amazing react library that allows you to manipulate your CSS with Javascript. It's usage is very intuitive and easy as well. And it made my life a whole lot easier when I was implementing the darkmode feature. I would probably recommend this over frontend libraries like tailwind
 - [W3 Schools](https://www.w3schools.com/) - Anytime I need a quick HTML,CSS and React refreshers this is where I go.
 
-### Acknowledgement
+### Acknowledgments
 I will like to sincerely thank the Amalitech Training Programme team for giving me the opportunity to work on this project
 
 ## Author
