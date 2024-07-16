@@ -38,8 +38,8 @@ Users should be able to:
 
 ### Screenshot
 
-<img src="./darkmodeP.jpg" alt="screenshot" width="200" />
-<img src="./lightmodeP.jpg" alt="screenshot" width="200" />
+<img src="./darkmodeP.jpg" alt="screenshot" width="400" />
+<img src="./lightmodeP.jpg" alt="screenshot" width="400" />
 
 
 
