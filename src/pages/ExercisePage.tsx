@@ -342,7 +342,7 @@ function ExercisePage() {
   const [data, setData] = useState<Data | any>(null);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [score, setScore] = useState(0);
-  const [isCorrectSelection, setIsCorrectSelection] = useState<boolean | undefined>(false);
+
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [correctAnswer, setCorrectAnswer] = useState<string>(data?.questions[questionIndex].answer || "");
@@ -363,7 +363,6 @@ function ExercisePage() {
 
     if (data?.questions && data?.questions[questionIndex]?.options && selectedIndex != null && questionIndex < data?.questions?.length && data != null) {
       if (data.questions[questionIndex]?.answer == data!.questions[questionIndex]!.options[selectedIndex]) {
-        setIsCorrectSelection(true)
         setScore((prev) => prev + 1)
        }
       else  setIsCorrectSelection(false);
