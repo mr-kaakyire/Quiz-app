@@ -265,7 +265,7 @@ const Exercise = styled.div<StyledProps>`
   box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
   -webkit-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);
   -moz-box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);  
-  border: ${({ isSelected, isCorrectSelection, submitClicked }) => (isCorrectSelection && isSelected ? '3px solid #26D782' : isCorrectSelection == false && isSelected && submitClicked == true ? "3px solid #ee5454" : isSelected && submitClicked == false ? "3px solid #A729F5" : "3px solid transparent")};
+   border: ${({ isSelected, isCorrectSelection, submitClicked }) => (isCorrectSelection==true && isSelected &&submitClicked? '3px solid #26D782' : isCorrectSelection == false && isSelected && submitClicked == true ? "3px solid #ee5454" : isSelected && submitClicked == false ? "3px solid #A729F5" : "3px solid transparent")};
 
   &:hover > .svg-container{
     background-color: ${({ isSelected }) => !isSelected && "#f2e6fe"};
@@ -279,7 +279,7 @@ const Exercise = styled.div<StyledProps>`
     color:  ${({ isSelected }) => (isSelected ? 'white' : '#666b7e')};
     display: grid;
     place-items: center;
-    background-color:  ${({ isSelected, isCorrectSelection, submitClicked }) => (isCorrectSelection && isSelected ? ' #26D782' : isCorrectSelection == false && isSelected && submitClicked == true ? "#EE5454" : isSelected && submitClicked == false ? "#A729F5" : "#F4F6FA")};
+    background-color:  ${({ isSelected, isCorrectSelection, submitClicked }) => (isCorrectSelection && isSelected  &&submitClicked? ' #26D782' : isCorrectSelection == false && isSelected && submitClicked == true ? "#EE5454" : isSelected && submitClicked == false ? "#A729F5" : "#F4F6FA")};
     border-radius:5px ;
 
     @media only screen and (max-width: 900px) {
@@ -365,11 +365,8 @@ function ExercisePage() {
       if (data.questions[questionIndex]?.answer == data!.questions[questionIndex]!.options[selectedIndex]) {
         setIsCorrectSelection(true)
         setScore((prev) => prev + 1)
-        if (data?.questions) {
-          setCorrectAnswer(data?.questions[questionIndex].answer || "")
-        }
-      }
-      else setIsCorrectSelection(false);
+       }
+      else  setIsCorrectSelection(false);
     }
   }
 
@@ -377,7 +374,7 @@ function ExercisePage() {
       if (data?.questions) {
         setCorrectAnswer(data?.questions[questionIndex].answer || "")
       }
-    },[questionIndex,correctAnswer])
+    },[questionIndex,data])
 
   useEffect(() => {
     fetch('/data.json')
@@ -427,7 +424,7 @@ function ExercisePage() {
         <div className="exercise-container">
           {data && data.questions ? (
             data?.questions[questionIndex].options?.map((option: any, index: any) => (
-              <Exercise  submitClicked={submitClicked} isCorrectSelection={isCorrectSelection} isSelected={selectedIndex === index} onClick={() => {
+              <Exercise  submitClicked={submitClicked} isCorrectSelection={correctAnswer==option} isSelected={selectedIndex === index} onClick={() => {
                 handleSubmitClicked()
                 submitClicked == false && selectedIndex!=-1  && updateIndex(index)
               }} key={index} svgBgColor="#f5f6fa">
