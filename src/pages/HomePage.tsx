@@ -108,6 +108,7 @@ const Exercise = styled.div<StyledProps>`
   font-size: 28px;
   font-weight: 600;
   background-color: ${({theme})=>theme.backgroundSecondary};
+  transition: background-color 500ms ease-in;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0px 24px 25px 6px rgba(0,0,0,0.06);

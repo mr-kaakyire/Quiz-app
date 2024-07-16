@@ -217,7 +217,7 @@ const Container = styled.div<StyledProps>`
 
 @media only screen and (max-width: 600px) {
   margin-top: 20px;
-  margin-left: -20px;
+ margin-left: 10px;
   flex-direction: column;
    align-items: center;
    gap: 20px;

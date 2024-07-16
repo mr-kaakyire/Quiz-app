@@ -251,6 +251,7 @@ const Exercise = styled.div<StyledProps>`
   gap: 40px;
   padding: 0px 10px ;
   
+  
   font-size: 28px;
   font-weight: 600;
   -webkit-user-select: none; /* Safari */
@@ -344,7 +345,7 @@ function ExercisePage() {
   const [isCorrectSelection, setIsCorrectSelection] = useState<boolean | undefined>(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
-  const [correctAnswer, setCorrectAnswer] = useState<string>(" ");
+  const [correctAnswer, setCorrectAnswer] = useState<string>(data?.questions[questionIndex].answer || "");
 
 
 
@@ -391,8 +392,7 @@ function ExercisePage() {
         if (location.pathname.includes("/css")) setData(data.quizzes[1])
         if (location.pathname.includes("/js")) setData(data.quizzes[2])
         if (location.pathname.includes("/acc")) setData(data.quizzes[3])
-      
-          setCorrectAnswer(data?.questions[questionIndex].answer || "")
+        setCorrectAnswer(data?.questions[questionIndex].answer )
         
 
       })
