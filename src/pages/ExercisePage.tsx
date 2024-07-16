@@ -351,8 +351,43 @@ function ExercisePage() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Define the event handler function
+    const handleKeyPress = (event:KeyboardEvent) => {
+      event.preventDefault()
+      console.log(console.log(event))
+      if (event.key === "ArrowUp") {
+        setSelectedIndex((prevIndex) => (prevIndex === null ? 0 : Math.max(0, prevIndex - 1))); // Move up
+      } if (event.key === "ArrowDown") {
+        setSelectedIndex((prevIndex) => (prevIndex === null ? 0 : Math.min(3,++prevIndex))); // Move down
+      }
+      if(event.key === "Enter"){
+        handleSubmit()
+      }
+      if(event.key === "ArrowRight" && submitClicked==true){
+        if (questionIndex < 9) {
+          setQuestionIndex((prev) => prev + 1)
+        }
+        else if (questionIndex == 9) {
 
+          navigate(`/completed${location.pathname}/${score}`)
+        }
 
+        setSelectedIndex(null)
+        setSubmitClicked(false)
+      }
+
+    };
+
+    // Add the event listener
+    window.addEventListener('keydown', handleKeyPress);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  },[selectedIndex,submitClicked,location.pathname]);
+  
 
   const updateIndex = (index: number) => {
     setSelectedIndex(index)
