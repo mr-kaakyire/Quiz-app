@@ -38,8 +38,9 @@ Users should be able to:
 
 ### Screenshot
 
-![](./darkmodeP.jpg)
-![](./lightmodeP.jpg)
+<img src="./darkmodeP.jpg" alt="screenshot" width="200" />
+<img src="./lightmodeP.jpg" alt="screenshot" width="200" />
+
 
 
 ### Links
