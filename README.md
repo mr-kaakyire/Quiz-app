@@ -63,7 +63,7 @@ Users should be able to:
 
 ### What I learned
 
-1 #### React Router
+#### React Router
 - Implementing React-router allowed me to navigate between different pages without reloading the entire page, making the app feel like a single-page application.
 - It also allows for dynamic segments which allows URL parameters to be passed to the link. 
 - It provide an Outlet component that allows you to dynamically change some parts of your page by change the link. 
