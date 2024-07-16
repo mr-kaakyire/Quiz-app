@@ -44,7 +44,7 @@ Users should be able to:
 ### Links
 
 - Sourcode: [Quiz-app/github](https://github.com/mr-kaakyire/Quiz-app)
-- Live Site: [quiz-app.live](https://quiz-92dpwnunp-mrboahens-projects.vercel.app/)
+- Live Site: [quiz-app.live](https://quiz-app-pearl-three.vercel.app/html)
 
 ## My process
 
