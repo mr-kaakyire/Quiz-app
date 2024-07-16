@@ -45,8 +45,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Sourcode: [Quiz-app/github](https://github.com/mr-kaakyire/Quiz-app)
+- Live Site: [quiz-app.live](https://quiz-92dpwnunp-mrboahens-projects.vercel.app/)
 
 ## My process
 
