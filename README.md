@@ -38,7 +38,7 @@ Users should be able to:
 
 ### Screenshot
 
-<a href="http://example.com" target="_blank">Open Example in New Tab</a>
+<iframe src="https://quiz-92dpwnunp-mrboahens-projects.vercel.app/" width="600" height="400"></iframe>
 
 ### Links
 
