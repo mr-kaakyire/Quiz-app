@@ -4,7 +4,7 @@
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -34,7 +34,7 @@ Users should be able to:
 - Navigate the entire app only using their keyboard
 - **Bonus**: Change the app's theme between light and dark
 
-### Screenshot
+### Screenshots
 
 <img src="./darkmodeP.jpg" alt="screenshot" width="400" />
 <img src="./lightmodeP.jpg" alt="screenshot" width="400" />
