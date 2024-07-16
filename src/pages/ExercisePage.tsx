@@ -327,11 +327,9 @@ justify-content: start;
   padding: 0px 5px;
   border-radius: 10px;
   transition: background-color 500ms ease-in;
-  
   .progress{
    background-color: #A729F5;
    height: 8px;  width: ${({ progWidth }) => `${progWidth ? (100 * ((progWidth + 1) / 10)) : "10"}%`};
-  
    border-radius: 10px;
    margin-bottom: 1px;
    transition: all 300ms ease-in-out;
